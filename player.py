@@ -44,7 +44,7 @@ class Player(CircleShape):
 
         if keys[pygame.K_SPACE]:
             if self.shot_cooldown_timer > 0:
-                pass
+                return
             else:
                 self.shoot()
                 self.shot_cooldown_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
@@ -56,7 +56,7 @@ class Player(CircleShape):
         self.position += rotated_with_speed_vector
 
     def shoot(self):
-        shot = Shot(self.position[0],self.position[1])
+        shot = Shot(self.position.x,self.position.y)
         unit_vector = pygame.Vector2(0, 1)
         rotated_vector = unit_vector.rotate(self.rotation)
         shot.velocity = rotated_vector * PLAYER_SHOOT_SPEED
